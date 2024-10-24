@@ -1,0 +1,792 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "usuariosExternos.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UsuariosExternos"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/si-admin/api/usuarios-externos": {
+      "post": {
+        "operationId": "UsuariosExternos_CreateUsuarioExterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      },
+      "put": {
+        "operationId": "UsuariosExternos_UpdateUsuarioExterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/alterar-senha-usuario": {
+      "put": {
+        "operationId": "UsuariosExternos_AlterarSenhaUsuario",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcRequestAlterarSenhaUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/cod-reserva/{codReserva}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByCodReserva",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "codReserva",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tamanhoPagina",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/desativar/{id}": {
+      "put": {
+        "operationId": "UsuariosExternos_DesativarUsuarioExterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/documento/{documento}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByDocumento",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "documento",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/email/{email}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/externo/{id}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByIDExterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/login": {
+      "post": {
+        "operationId": "UsuariosExternos_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcLoginUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/nome/{nome}/{tamanhoPagina}/{cursor}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByNome",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcListaUsuariosExternos"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tamanhoPagina",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/reset-senha": {
+      "put": {
+        "operationId": "UsuariosExternos_ResetSenha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcResetSenhaUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/restaurar/{id}": {
+      "put": {
+        "operationId": "UsuariosExternos_RestaurarUsuarioExterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/teste": {
+      "post": {
+        "operationId": "UsuariosExternos_CreateUsuarioExternoTeste",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/token-reset-senha": {
+      "post": {
+        "operationId": "UsuariosExternos_TokenResetSenha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseTokenResetSenha"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcEmailReset"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/{id}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindUsuarioExternoByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-externos/{tamanhoPagina}/{cursor}": {
+      "get": {
+        "operationId": "UsuariosExternos_FindAllUsuariosExternos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcListaUsuariosExternos"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tamanhoPagina",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosExternos"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpcEmailReset": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de envio de e-mail para reset de senha"
+    },
+    "grpcListaUsuariosExternos": {
+      "type": "object",
+      "properties": {
+        "usuariosExternos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcUsuarioExterno"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/grpcMeta"
+        }
+      }
+    },
+    "grpcLoginUsuario": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Login dos usuários"
+    },
+    "grpcMeta": {
+      "type": "object",
+      "properties": {
+        "proximoCursor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tamanhoPagina": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "temMais": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcPerfil": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Perfis"
+    },
+    "grpcRequestAlterarSenhaUsuario": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "senhaAntiga": {
+          "type": "string"
+        },
+        "senhaNova": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcResetSenhaUsuario": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "senhaNova": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcResponseBool": {
+      "type": "object",
+      "properties": {
+        "alterado": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcResponseTokenResetSenha": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcUsuarioExterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "idExterno": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "documento": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "codReserva": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioExterno"
+    },
+    "grpcUsuarioInterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioInterno"
+    },
+    "grpcUsuarioPerfis": {
+      "type": "object",
+      "properties": {
+        "usuarioInterno": {
+          "$ref": "#/definitions/grpcUsuarioInterno"
+        },
+        "usuarioExterno": {
+          "$ref": "#/definitions/grpcUsuarioExterno"
+        },
+        "perfis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPerfil"
+          }
+        }
+      },
+      "title": "Definição do modelo de relação entre Usuário e Perfis"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

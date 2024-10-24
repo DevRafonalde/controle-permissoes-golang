@@ -1,0 +1,304 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "permissoes.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Permissoes"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/si-admin/api/permissoes": {
+      "post": {
+        "operationId": "Permissoes_CreatePermissao",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPermissao"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcPermissao"
+            }
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      },
+      "put": {
+        "operationId": "Permissoes_UpdatePermissao",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPermissao"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcPermissao"
+            }
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      }
+    },
+    "/si-admin/api/permissoes/ativar/{id}": {
+      "put": {
+        "operationId": "Permissoes_AtivarPermissao",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      }
+    },
+    "/si-admin/api/permissoes/desativar/{id}": {
+      "put": {
+        "operationId": "Permissoes_DesativarPermissao",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      }
+    },
+    "/si-admin/api/permissoes/{id}": {
+      "get": {
+        "operationId": "Permissoes_FindPermissaoById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPermissao"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      }
+    },
+    "/si-admin/api/permissoes/{tamanhoPagina}/{cursor}": {
+      "get": {
+        "operationId": "Permissoes_FindAllPermissoes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcListaPermissoes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tamanhoPagina",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Permissoes"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpcListaPermissoes": {
+      "type": "object",
+      "properties": {
+        "permissoes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPermissao"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/grpcMeta"
+        }
+      }
+    },
+    "grpcMeta": {
+      "type": "object",
+      "properties": {
+        "proximoCursor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tamanhoPagina": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "temMais": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcPermissao": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Permissões"
+    },
+    "grpcResponseBool": {
+      "type": "object",
+      "properties": {
+        "alterado": {
+          "type": "boolean"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

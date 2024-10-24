@@ -1,0 +1,158 @@
+syntax = "proto3";
+package grpc;
+
+option go_package = "si-admin/app/grpc";
+
+// Comandos para gerar codigos go, swagger e descriptor:
+// export PATH="$PATH:$(go env GOPATH)/bin"
+// protoc -I=app/model/grpc --go_out=app/model/grpc/ --go_opt=paths=source_relative --go-grpc_out=app/model/grpc/ --go-grpc_opt=paths=source_relative app/model/grpc/*.proto
+
+// protoc -I=app/model/grpc -I=app/model/grpc/third_party/googleapis --go_out=app/model/grpc/ --go_opt=paths=source_relative --go-grpc_out=app/model/grpc/ --go-grpc_opt=paths=source_relative --openapiv2_out=app/model/grpc/ --openapiv2_opt logtostderr=true app/model/grpc/*.proto
+
+// protoc -I=app/model/grpc/third_party/googleapis -I=app/model/grpc --include_imports --include_source_info --descriptor_set_out=app/model/grpc/descriptor.pb app/model/grpc/*.proto
+
+// Definição do modelo de UsuarioExterno
+message UsuarioExterno {
+    int32 id = 1;
+    string uuid = 2;
+    int32 idExterno = 3;
+    string nome = 4;
+    string documento = 5;
+    string email = 6;
+    string senha = 7;
+    string codReserva = 8;
+    bool ativo = 9;
+    string tokenResetSenha = 10;
+    string atualizadoEm = 11;
+    bool senhaAtualizada = 12;
+}
+
+// Definição do modelo de Perfis
+message Perfil {
+    int32 id = 1;
+    string nome = 2;
+    string descricao = 3;
+    bool ativo = 4;
+    string atualizadoEm = 5;
+}
+
+// Definição do modelo de Permissões
+message Permissao {
+    int32 id = 1;
+    string nome = 2;
+    string descricao = 3;
+    bool ativo = 4;
+    string atualizadoEm = 5;
+}
+
+// Definição do modelo de relação entre Perfil e Permissões
+message PerfilPermissoes {
+    Perfil perfil = 1;
+    repeated Permissao permissoes = 2;
+}
+
+// Definição do modelo de UsuarioInterno
+message UsuarioInterno {
+    int32 id = 1;
+    string nome = 2;
+    string email = 3;
+    string senha = 4;
+    bool ativo = 5;
+    string tokenResetSenha = 6;
+    string atualizadoEm = 7;
+    bool senhaAtualizada = 8;
+}
+
+// Definição do modelo de relação entre Usuário e Perfis
+message UsuarioPerfis {
+    UsuarioInterno usuarioInterno = 1;
+    UsuarioExterno usuarioExterno = 2;
+    repeated Perfil perfis = 3;
+}
+
+// Definição do modelo de relação entre Perfil e Usuários
+message PerfilUsuarios {
+    Perfil perfil = 1;
+    repeated UsuarioInterno usuariosInternos = 2;
+    repeated UsuarioExterno usuariosExternos = 3;
+}
+
+// Definição do modelo de envio de e-mail para reset de senha
+message EmailReset {
+    string email = 1;
+}
+
+// Definição do modelo de Login dos usuários
+message LoginUsuario {
+    string email = 1;
+    string senha = 2; 
+}
+
+// Definição do modelo de retorno da requisição de Login
+message RetornoLoginUsuario {
+    int32 id = 1;
+    string nome = 2;
+    string email = 3;
+    string token = 4;
+}
+
+message ResetSenhaUsuario {
+    string token = 1;
+    string senhaNova = 2;
+}
+
+message RequestVazio{}
+
+message RequestId {
+    int32 id = 1;
+}
+
+message ResponseBool {
+    bool alterado = 1;
+}
+
+message RequestNome {
+    string nome = 1;
+    int32 tamanhoPagina = 2;
+    int32 cursor = 3;
+}
+
+message RequestCodReserva {
+    string codReserva = 1;
+    int32 tamanhoPagina = 2;
+    int32 cursor = 3;
+}
+
+message RequestDocumento {
+    string documento = 1;
+}
+
+message Meta {
+    int32 proximoCursor = 1;
+    int32 tamanhoPagina = 2;
+    bool temMais = 3;
+}
+
+message RequestAllPaginado {
+    int32 tamanhoPagina = 1;
+    int32 cursor = 2;
+}
+
+message RequestEmail {
+    string email = 1;
+}
+
+message RequestAlterarSenhaAdmin {
+    int32 id = 1;
+    string senhaNova = 2;
+}
+
+message RequestAlterarSenhaUsuario {
+    int32 id = 1;
+    string senhaAntiga = 2;
+    string senhaNova = 3;
+}
+
+message ResponseTokenResetSenha {
+    string token = 1;
+}

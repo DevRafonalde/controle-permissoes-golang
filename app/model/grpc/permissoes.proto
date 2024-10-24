@@ -1,0 +1,53 @@
+syntax = "proto3";
+package grpc;
+
+import "modelos.proto";
+import "third_party/googleapis/google/api/annotations.proto";
+
+option go_package = "si-admin/app/grpc";
+
+// Definição do serviço
+service Permissoes {
+    rpc FindAllPermissoes(RequestAllPaginado) returns (ListaPermissoes) {
+        option (google.api.http) = {
+            get: "/si-admin/api/permissoes/{tamanhoPagina}/{cursor}"
+        };
+    }
+
+    rpc FindPermissaoById(RequestId) returns (Permissao) {
+        option (google.api.http) = {
+            get: "/si-admin/api/permissoes/{id}"
+        };
+    }
+
+    rpc CreatePermissao(Permissao) returns (Permissao) {
+        option (google.api.http) = {
+            post: "/si-admin/api/permissoes"
+            body: "*"
+        };
+    }
+
+    rpc UpdatePermissao(Permissao) returns (Permissao) {
+        option (google.api.http) = {
+            put: "/si-admin/api/permissoes"
+            body: "*"
+        };
+    }
+
+    rpc AtivarPermissao(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/permissoes/ativar/{id}"
+        };
+    }
+
+    rpc DesativarPermissao(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/permissoes/desativar/{id}"
+        };
+    }
+}
+
+message ListaPermissoes {
+    repeated Permissao permissoes = 1;
+    Meta meta = 2;
+}

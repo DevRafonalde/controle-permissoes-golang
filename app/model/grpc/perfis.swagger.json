@@ -1,0 +1,546 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "perfis.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Perfis"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/si-admin/api/perfis": {
+      "post": {
+        "operationId": "Perfis_CreatePerfil",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      },
+      "put": {
+        "operationId": "Perfis_UpdatePerfil",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/ativar/{id}": {
+      "put": {
+        "operationId": "Perfis_AtivarPerfil",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/desativar/{idPerfilDeletado}/{idPerfilNovo}": {
+      "put": {
+        "operationId": "Perfis_DesativarPerfil",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "idPerfilDeletado",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "idPerfilNovo",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/permissoes-vinculadas/{id}": {
+      "get": {
+        "operationId": "Perfis_GetPermissoesVinculadas",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseGetPermissoesVinculadas"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/usuarios-vinculados/{id}": {
+      "get": {
+        "operationId": "Perfis_GetUsuariosVinculados",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseGetUsuariosVinculados"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/{id}": {
+      "get": {
+        "operationId": "Perfis_FindPerfilById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      },
+      "post": {
+        "operationId": "Perfis_ClonePerfil",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcPerfilPermissoes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    },
+    "/si-admin/api/perfis/{tamanhoPagina}/{cursor}": {
+      "get": {
+        "operationId": "Perfis_FindAllPerfis",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcListaPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tamanhoPagina",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "Perfis"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpcListaPerfis": {
+      "type": "object",
+      "properties": {
+        "perfis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPerfil"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/grpcMeta"
+        }
+      }
+    },
+    "grpcMeta": {
+      "type": "object",
+      "properties": {
+        "proximoCursor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tamanhoPagina": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "temMais": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcPerfil": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Perfis"
+    },
+    "grpcPerfilPermissoes": {
+      "type": "object",
+      "properties": {
+        "perfil": {
+          "$ref": "#/definitions/grpcPerfil"
+        },
+        "permissoes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPermissao"
+          }
+        }
+      },
+      "title": "Definição do modelo de relação entre Perfil e Permissões"
+    },
+    "grpcPermissao": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Permissões"
+    },
+    "grpcResponseBool": {
+      "type": "object",
+      "properties": {
+        "alterado": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcResponseGetPermissoesVinculadas": {
+      "type": "object",
+      "properties": {
+        "permissoes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPermissao"
+          }
+        }
+      }
+    },
+    "grpcResponseGetUsuariosVinculados": {
+      "type": "object",
+      "properties": {
+        "usuariosInternos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcUsuarioInterno"
+          }
+        },
+        "usuariosExternos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcUsuarioExterno"
+          }
+        }
+      }
+    },
+    "grpcUsuarioExterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "idExterno": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "documento": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "codReserva": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioExterno"
+    },
+    "grpcUsuarioInterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioInterno"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

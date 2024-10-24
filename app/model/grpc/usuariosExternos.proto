@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package grpc;
+
+import "modelos.proto";
+import "third_party/googleapis/google/api/annotations.proto"; // Importação para anotações HTTP
+
+option go_package = "si-admin/app/grpc";
+
+// Definição do serviço
+service UsuariosExternos {
+    rpc FindAllUsuariosExternos(RequestAllPaginado) returns (ListaUsuariosExternos) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/{tamanhoPagina}/{cursor}"
+        };
+    }
+
+    rpc FindUsuarioExternoByID(RequestId) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/{id}"
+        };
+    }
+
+    rpc FindUsuarioExternoByIDExterno(RequestId) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/externo/{id}"
+        };
+    }
+
+    rpc FindUsuarioExternoByNome(RequestNome) returns (ListaUsuariosExternos) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/nome/{nome}/{tamanhoPagina}/{cursor}"
+        };
+    }
+
+    rpc FindUsuarioExternoByDocumento(RequestDocumento) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/documento/{documento}"
+        };
+    }
+
+    rpc FindUsuarioExternoByCodReserva(RequestCodReserva) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/cod-reserva/{codReserva}"
+        };
+    }
+
+    rpc FindUsuarioExternoByEmail(RequestEmail) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-externos/email/{email}"
+        };
+    }
+
+    rpc CreateUsuarioExterno(UsuarioPerfis) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-externos"
+            body: "*"
+        };
+    }
+
+    rpc CreateUsuarioExternoTeste(UsuarioPerfis) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-externos/teste"
+            body: "*"
+        };
+    }
+
+    rpc UpdateUsuarioExterno(UsuarioPerfis) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-externos"
+            body: "*"
+        };
+    }
+
+    rpc DesativarUsuarioExterno(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-externos/desativar/{id}"
+        };
+    }
+
+    rpc RestaurarUsuarioExterno(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-externos/restaurar/{id}"
+        };
+    }
+
+    rpc Login(LoginUsuario) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-externos/login"
+            body: "*"
+        };
+    }
+
+    rpc TokenResetSenha(EmailReset) returns (ResponseTokenResetSenha) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-externos/token-reset-senha"
+            body: "*"
+        };
+    }
+
+    rpc ResetSenha(ResetSenhaUsuario) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-externos/reset-senha"
+            body: "*"
+        };
+    }
+
+    rpc AlterarSenhaUsuario(RequestAlterarSenhaUsuario) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-externos/alterar-senha-usuario"
+            body: "*"
+        };
+    }
+}
+
+message ListaUsuariosExternos {
+    repeated UsuarioExterno usuariosExternos = 1;
+    Meta meta = 2;
+}

@@ -1,0 +1,716 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "usuariosInternos.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UsuariosInternos"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/si-admin/api/usuarios-internos": {
+      "post": {
+        "operationId": "UsuariosInternos_CreateUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      },
+      "put": {
+        "operationId": "UsuariosInternos_UpdateUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/alterar-senha-admin": {
+      "put": {
+        "operationId": "UsuariosInternos_AlterarSenhaAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcRequestAlterarSenhaAdmin"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/alterar-senha-usuario": {
+      "put": {
+        "operationId": "UsuariosInternos_AlterarSenhaUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcRequestAlterarSenhaUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/desativar/{id}": {
+      "put": {
+        "operationId": "UsuariosInternos_DesativarUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/login": {
+      "post": {
+        "operationId": "UsuariosInternos_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcRetornoLoginUsuario"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcLoginUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/perfis-vinculados/{id}": {
+      "get": {
+        "operationId": "UsuariosInternos_GetPerfisVinculados",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponsePerfisVinculados"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/reset-senha": {
+      "put": {
+        "operationId": "UsuariosInternos_ResetSenha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcResetSenhaUsuario"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/restaurar/{id}": {
+      "put": {
+        "operationId": "UsuariosInternos_RestaurarUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseBool"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/token-reset-senha": {
+      "post": {
+        "operationId": "UsuariosInternos_TokenResetSenha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcResponseTokenResetSenha"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcEmailReset"
+            }
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/{id}": {
+      "get": {
+        "operationId": "UsuariosInternos_FindUsuarioInternoById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      },
+      "post": {
+        "operationId": "UsuariosInternos_CloneUsuarioInterno",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcUsuarioPerfis"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    },
+    "/si-admin/api/usuarios-internos/{tamanhoPagina}/{cursor}": {
+      "get": {
+        "operationId": "UsuariosInternos_FindAllUsuariosInternos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcListaUsuariosInternos"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tamanhoPagina",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "UsuariosInternos"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpcEmailReset": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de envio de e-mail para reset de senha"
+    },
+    "grpcListaUsuariosInternos": {
+      "type": "object",
+      "properties": {
+        "usuariosInternos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcUsuarioInterno"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/grpcMeta"
+        }
+      }
+    },
+    "grpcLoginUsuario": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Login dos usuários"
+    },
+    "grpcMeta": {
+      "type": "object",
+      "properties": {
+        "proximoCursor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tamanhoPagina": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "temMais": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcPerfil": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de Perfis"
+    },
+    "grpcRequestAlterarSenhaAdmin": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "senhaNova": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcRequestAlterarSenhaUsuario": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "senhaAntiga": {
+          "type": "string"
+        },
+        "senhaNova": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcResetSenhaUsuario": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "senhaNova": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcResponseBool": {
+      "type": "object",
+      "properties": {
+        "alterado": {
+          "type": "boolean"
+        }
+      }
+    },
+    "grpcResponsePerfisVinculados": {
+      "type": "object",
+      "properties": {
+        "perfis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPerfil"
+          }
+        }
+      }
+    },
+    "grpcResponseTokenResetSenha": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "grpcRetornoLoginUsuario": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "Definição do modelo de retorno da requisição de Login"
+    },
+    "grpcUsuarioExterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "idExterno": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "documento": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "codReserva": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioExterno"
+    },
+    "grpcUsuarioInterno": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "senha": {
+          "type": "string"
+        },
+        "ativo": {
+          "type": "boolean"
+        },
+        "tokenResetSenha": {
+          "type": "string"
+        },
+        "atualizadoEm": {
+          "type": "string"
+        },
+        "senhaAtualizada": {
+          "type": "boolean"
+        }
+      },
+      "title": "Definição do modelo de UsuarioInterno"
+    },
+    "grpcUsuarioPerfis": {
+      "type": "object",
+      "properties": {
+        "usuarioInterno": {
+          "$ref": "#/definitions/grpcUsuarioInterno"
+        },
+        "usuarioExterno": {
+          "$ref": "#/definitions/grpcUsuarioExterno"
+        },
+        "perfis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/grpcPerfil"
+          }
+        }
+      },
+      "title": "Definição do modelo de relação entre Usuário e Perfis"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

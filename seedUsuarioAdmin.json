@@ -1,0 +1,12 @@
+{
+    "usuario": {
+        "nome": "Administrador",
+        "email": "ti.greatek@greatek.com.br",
+        "senha": "admin@ti2024"
+    },
+    "perfis": [
+            {
+            "id": 1
+        }
+    ]
+}

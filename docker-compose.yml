@@ -1,0 +1,66 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: postgres
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/ainit.sql
+      - ./sql/seeder.sql:/docker-entrypoint-initdb.d/bseeder.sql
+      - ./sql/ligacoes.sql:/docker-entrypoint-initdb.d/cligacoes.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Desenvolvimento
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: example
+      DB_NAME: siadmin_homo
+
+      # Produção
+      # DB_HOST: localhost
+      # DB_USER: simfonia-iez
+      # DB_PASSWORD: "!ez@Telec0m"
+      # DB_NAME: simfonia_homo
+      GENERATE_KEY: "true"
+    volumes:
+      - ./downloads:/app/downloads
+      - ./uploads:/app/uploads
+      - ./jwt:/app/jwt
+      - ./logs:/app/logs
+    ports:
+      - "8601:8601"
+    # Descomentar linha abaixo para produção
+    # network_mode: "host"
+
+  envoy:
+    image: envoyproxy/envoy:v1.31.0
+    # command: ["envoy", "-c", "/etc/envoy/envoy.yaml", "--log-level", "debug"] 
+    # Descomentar linha acima para logs detalhados
+    container_name: envoy_proxy
+    ports:
+      - "9901:9901"  # Porta para o admin interface do Envoy
+      - "8080:8080"  # Porta que o Envoy vai escutar e redirecionar para o app
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./app/model/grpc/descriptor.pb:/app/model/grpc/descriptor.pb
+    depends_on:
+      - app
+    # Descomentar linha abaixo para produção
+    # network_mode: "host"

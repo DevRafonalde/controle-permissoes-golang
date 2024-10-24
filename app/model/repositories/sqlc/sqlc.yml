@@ -1,0 +1,16 @@
+version: 2
+sql:
+  - engine: "postgresql"
+    schema: "banco.sql"
+    queries:
+      - "queries/usuariosExternos.sql"
+      - "queries/perfilPermissao.sql"
+      - "queries/perfis.sql"
+      - "queries/permissoes.sql"
+      - "queries/usuarioPerfil.sql"
+      - "queries/usuariosInternos.sql"
+    gen:
+      go:
+        package: "repositoryIMPL"
+        out: "repositoryIMPL"
+        sql_package: "pgx/v5"

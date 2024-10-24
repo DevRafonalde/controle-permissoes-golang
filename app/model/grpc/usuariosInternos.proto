@@ -1,0 +1,105 @@
+syntax = "proto3";
+package grpc;
+
+import "modelos.proto";
+import "third_party/googleapis/google/api/annotations.proto";
+
+option go_package = "si-admin/app/grpc";
+
+// Definição do serviço
+service UsuariosInternos {
+    rpc FindAllUsuariosInternos(RequestAllPaginado) returns (ListaUsuariosInternos) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-internos/{tamanhoPagina}/{cursor}"
+        };
+    }
+
+    rpc FindUsuarioInternoById(RequestId) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-internos/{id}"
+        };
+    }
+
+    rpc GetPerfisVinculados(RequestId) returns (ResponsePerfisVinculados) {
+        option (google.api.http) = {
+            get: "/si-admin/api/usuarios-internos/perfis-vinculados/{id}"
+        };
+    }
+
+    rpc CreateUsuarioInterno(UsuarioPerfis) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-internos"
+            body: "*"
+        };
+    }
+
+    rpc CloneUsuarioInterno(RequestId) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-internos/{id}"
+        };
+    }
+
+    rpc UpdateUsuarioInterno(UsuarioPerfis) returns (UsuarioPerfis) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos"
+            body: "*"
+        };
+    }
+
+    rpc AlterarSenhaAdmin(RequestAlterarSenhaAdmin) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos/alterar-senha-admin"
+            body: "*"
+        };
+    }
+
+    rpc AlterarSenhaUsuarioInterno(RequestAlterarSenhaUsuario) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos/alterar-senha-usuario"
+            body: "*"
+        };
+    }
+
+    rpc RestaurarUsuarioInterno(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos/restaurar/{id}"
+        };
+    }
+
+    rpc DesativarUsuarioInterno(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos/desativar/{id}"
+        };
+    }
+
+    rpc Login(LoginUsuario) returns (RetornoLoginUsuario) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-internos/login"
+            body: "*"
+        };
+    }
+
+    rpc TokenResetSenha(EmailReset) returns (ResponseTokenResetSenha) {
+        option (google.api.http) = {
+            post: "/si-admin/api/usuarios-internos/token-reset-senha"
+            body: "*"
+        };
+    }
+
+    rpc ResetSenha(ResetSenhaUsuario) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/usuarios-internos/reset-senha"
+            body: "*"
+        };
+    }
+
+}
+
+message ListaUsuariosInternos {
+    repeated UsuarioInterno usuariosInternos = 1;
+    Meta meta = 2;
+}
+
+message ResponsePerfisVinculados {
+    repeated Perfil perfis = 1;
+}

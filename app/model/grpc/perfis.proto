@@ -1,0 +1,87 @@
+syntax = "proto3";
+package grpc;
+
+import "modelos.proto";
+import "third_party/googleapis/google/api/annotations.proto";
+
+option go_package = "si-admin/app/grpc";
+
+// Definição do serviço
+service Perfis {
+    rpc FindAllPerfis(RequestAllPaginado) returns (ListaPerfis) {
+        option (google.api.http) = {
+            get: "/si-admin/api/perfis/{tamanhoPagina}/{cursor}"
+        };
+    }
+
+    rpc FindPerfilById(RequestId) returns (PerfilPermissoes) {
+        option (google.api.http) = {
+            get: "/si-admin/api/perfis/{id}"
+        };
+    }
+
+    rpc GetUsuariosVinculados(RequestId) returns (ResponseGetUsuariosVinculados) {
+        option (google.api.http) = {
+            get: "/si-admin/api/perfis/usuarios-vinculados/{id}"
+        };
+    }
+
+    rpc GetPermissoesVinculadas(RequestId) returns (ResponseGetPermissoesVinculadas) {
+        option (google.api.http) = {
+            get: "/si-admin/api/perfis/permissoes-vinculadas/{id}"
+        };
+    }
+
+    rpc CreatePerfil(PerfilPermissoes) returns (PerfilPermissoes) {
+        option (google.api.http) = {
+            post: "/si-admin/api/perfis"
+            body: "*"
+        };
+    }
+
+    rpc ClonePerfil(RequestId) returns (PerfilPermissoes) {
+        option (google.api.http) = {
+            post: "/si-admin/api/perfis/{id}"
+        };
+    }
+
+    rpc UpdatePerfil(PerfilPermissoes) returns (PerfilPermissoes) {
+        option (google.api.http) = {
+            put: "/si-admin/api/perfis"
+            body: "*"
+        };
+    }
+
+    rpc AtivarPerfil(RequestId) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/perfis/ativar/{id}"
+        };
+    }
+
+    rpc DesativarPerfil(PerfilDelete) returns (ResponseBool) {
+        option (google.api.http) = {
+            put: "/si-admin/api/perfis/desativar/{idPerfilDeletado}/{idPerfilNovo}"
+        };
+    }
+}
+
+message ListaPerfis {
+    repeated Perfil perfis = 1;
+    Meta meta = 2;
+}
+
+message ResponseGetUsuariosVinculados {
+    repeated UsuarioInterno usuariosInternos = 1;
+    repeated UsuarioExterno usuariosExternos = 2;
+}
+
+message ResponseGetPermissoesVinculadas {
+    repeated Permissao permissoes = 1;
+}
+
+// Definição do modelo de deleção de um perfil, exigindo que um novo seja colocado no lugar para que ninguém fique sem perfil
+// caso exista algum usuário apenas com aquele perfil
+message PerfilDelete {
+    int32 idPerfilDeletado = 1;
+    int32 idPerfilNovo = 2;
+}
